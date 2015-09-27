@@ -13,10 +13,15 @@ import java.util.List;
  */
 public class Book {
     
+    // Pakolliset kentät
+    // author ja editor ovat vaihtoehtoisia, yksi niistä on pakollinen
     private List<BibTexName> author;
     private List<BibTexName> editor;
     private String title;
     private String publisher;
+    
+    
+    // Valinnaiset kentät
     private String year;
     private String volume;
     private String number;
