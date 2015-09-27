@@ -53,6 +53,11 @@
                     <maxmem>256m</maxmem>
                     <aggregate>true</aggregate>
                     <outputDirectory>${project.reporting.outputDirectory}/cobertura</outputDirectory>
+                    <instrumentation>
+                        <excludes>
+                            <exclude>raemae.bibtexapp.Main.class</exclude>
+                        </excludes>
+                    </instrumentation>
                 </configuration>
             </plugin>
 
