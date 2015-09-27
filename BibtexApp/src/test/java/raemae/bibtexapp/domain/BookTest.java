@@ -59,8 +59,10 @@ public class BookTest {
         Book book1 = new Book();
         Book book2 = new Book();
         book1.addField("author","Vihavainen");
-        book1.addField("year","2015");
-        assertThat(book1, is(not(book2)));
+        book2.addField("author","Vihavainen");
+        assertEquals(book1.getField("author"), book2.getField("author"));
+        book2.addField("author", "Someoneelse");
+        assertThat(book1.getField("author"), is(not(book2.getField("author"))));
         
     }
     
