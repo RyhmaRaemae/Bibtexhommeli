@@ -3,20 +3,24 @@ package raemae.bibtexapp.ui;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 
 public class TextUI {
     
     private List<TextUIFunction> functions;
     private boolean running;
-    private Scanner scanner;
+    private IO io;
     
-    public TextUI(List<TextUIFunction> functions) {
+    public TextUI(List<TextUIFunction> functions, IO io) {
         this.functions = functions;
+        this.io = io;
         running = false;
-        scanner = new Scanner(System.in);
         functions.add(new Quit(this));
+        
+    }
+    
+    public void addFunction(TextUIFunction f) {
+        functions.add(f);
     }
     
     public void run() {
@@ -25,28 +29,27 @@ public class TextUI {
         while (running) {
             listMenuOptions();
             
-            String command = scanner.nextLine();
+            String command = io.readLine("> ");
             TextUIFunction f = getFunctionByName(command);
             
             if (f == null) {
-                System.out.println("Command not recognized.");
+                io.print("Invalid command.");
             }
             else {
                 f.execute();
             }
             
         }
-        System.out.println("");
+        io.print("");
     }
     
     private void listMenuOptions() {
-        System.out.println("");
-        System.out.println("Please choose from one of the following options:\n");
+        io.print("");
+        io.print("Please choose from one of the following options:\n");
         
         for (TextUIFunction f : functions) {
-            System.out.println(f.getMenuName() + " - " + f.getMenuDescription());
+            io.print(f.getMenuName() + " - " + f.getMenuDescription());
         }
-        System.out.print("> ");
     }
     
     public void stop() {
