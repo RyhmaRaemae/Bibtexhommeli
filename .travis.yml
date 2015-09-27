@@ -2,4 +2,4 @@ language: java
 install:
   - cd BibtexApp && mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 after_success:
-  - cd BibtexApp && mvn clean test cobertura:cobertura coveralls:report
+  - mvn clean test cobertura:cobertura coveralls:report
