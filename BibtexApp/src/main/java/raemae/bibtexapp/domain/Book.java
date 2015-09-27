@@ -35,11 +35,12 @@ public class Book {
         String result="@book{";
         String citationKey=this.getField("author").substring(0,4) + this.getField("year").substring(0,4)
                 + this.getField("title").substring(0,4);
-        result+=citationKey + ",\n";
+        result+=citationKey;
         for(String key : this.fields.keySet()) {
-            result+=key + " = {" + this.fields.get(key) + "},\n";
+            result+=",\n";
+            result+=key + " = {" + this.fields.get(key) + "}";
         }
-        result+="}";
+        result+="\n}";
         return result;
     }
     
