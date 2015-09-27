@@ -55,7 +55,7 @@
                     <outputDirectory>${project.reporting.outputDirectory}/cobertura</outputDirectory>
                     <instrumentation>
                         <excludes>
-                            <exclude>raemae.bibtexapp.Main.class</exclude>
+                            <exclude>raemae/bibtexapp/Main.class</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>
