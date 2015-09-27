@@ -1,1 +1,3 @@
 language: java
+
+script: cd BibtexApp && mvn -DskipTests=true -Dmaven.javadoc.skip=true -B -V
