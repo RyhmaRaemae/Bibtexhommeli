@@ -47,9 +47,7 @@ scenario "user cannot add a book without the year field", {
 
   then 'the book will not be saved', {
   }
-
-
-description "adding information to a book"
+}
 
 scenario "adding author, year and title fields to a new book", {
 
