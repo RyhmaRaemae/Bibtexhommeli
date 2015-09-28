@@ -37,8 +37,8 @@ public class BookTest {
         book.addField("author","Vihavainen, Arto");
         book.addField("year","2015");
         book.addField("title","Ohjelmistotuotanto");
-        System.out.println(book.toBibTex());
-        assertEquals(0, 0); 
+        
+        assertEquals(book.toBibTex().substring(0,18), "@book{Viha2015Ohje"); 
     }
     
     @Test
