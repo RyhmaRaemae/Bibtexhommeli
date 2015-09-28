@@ -20,6 +20,4 @@ public class BookReferenceStorage {
     public List<Book> getBooks() {
         return books;
     }
-    
-
 }
