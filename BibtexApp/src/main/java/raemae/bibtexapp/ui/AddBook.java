@@ -1,7 +1,6 @@
 
 package raemae.bibtexapp.ui;
 
-import java.util.HashMap;
 import raemae.bibtexapp.domain.Book;
 import services.BookReferenceStorage;
 

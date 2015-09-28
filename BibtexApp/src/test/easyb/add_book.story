@@ -1,8 +1,57 @@
-package raemae.bibtexapp.domain;
+import raemae.bibtexapp.*
+import raemae.bibtexapp.domain.*
+import raemae.bibtexapp.ui.*
+import services.*
 
-description "adding a book"
+description 'User can add books into the app'
 
-scenario "adding a new book with author, year and title", {
+scenario "user can login with correct password", {
+  given 'command addbook selected', {
+  }
+
+  when 'the required fields are filled', {
+  }
+
+  then 'the book will be saved', {
+  }
+}
+
+scenario "user cannot add a book without the author field", {
+  given 'command addbook selected', {
+  }
+
+  when 'the Author field is left empty', {
+  }
+
+  then 'the book will not be saved', {
+  }
+}
+
+scenario "user cannot add a book without the title field", {
+  given 'command addbook selected', {
+  }
+
+  when 'the title field is left empty', {
+  }
+
+  then 'the book will not be saved', {
+  }
+}
+
+scenario "user cannot add a book without the year field", {
+  given 'command addbook selected', {
+  }
+
+  when 'the title year is left empty', {
+  }
+
+  then 'the book will not be saved', {
+  }
+
+
+description "adding information to a book"
+
+scenario "adding author, year and title fields to a new book", {
 
     given "an empty empty book",{
         book = new Book();
