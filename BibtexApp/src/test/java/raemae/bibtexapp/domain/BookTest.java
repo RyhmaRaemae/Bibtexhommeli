@@ -8,17 +8,6 @@ import static org.junit.Assert.*;
 public class BookTest {
 
     @Test
-    public void toBibTexTest() {
-        Book book=new Book();
-        
-        book.addField("author","Vihavainen, Arto");
-        book.addField("year","2015");
-        book.addField("title","Ohjelmistotuotanto");
-        
-        assertEquals(book.toBibTex().substring(0,18), "@book{Viha2015Ohje"); 
-    }
-    
-    @Test
     public void bookDataTest() {
         Book book=new Book();
         
