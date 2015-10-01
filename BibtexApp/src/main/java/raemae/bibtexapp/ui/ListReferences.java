@@ -1,36 +1,37 @@
 package raemae.bibtexapp.ui;
 
 import raemae.bibtexapp.domain.Book;
-import services.BookReferenceStorage;
+import raemae.bibtexapp.domain.Reference;
+import services.ReferenceStorage;
 
-public class ListBooks extends TextUIFunction {
+public class ListReferences extends TextUIFunction {
 
     private IO io;
-    private BookReferenceStorage books;
+    private ReferenceStorage references;
 
-    public ListBooks(IO io, BookReferenceStorage books) {
+    public ListReferences(IO io, ReferenceStorage references) {
         super(2);
         this.io = io;
-        this.books = books;
+        this.references = references;
     }
 
     @Override
     public void execute() {
         io.print("");
         io.print("Found the following book references:\n");
-        for (Book b : books.getBooks()) {
+        for (Reference b : references.getBooks()) {
             io.print(b.toBibTex());
         }
     }
 
     @Override
     public String getMenuName() {
-        return "listbooks";
+        return "list";
     }
 
     @Override
     public String getMenuDescription() {
-        return "List all book-type references";
+        return "List all references";
     }
 
 }

@@ -14,35 +14,45 @@ import java.util.Map;
  *
  * @author Markku
  */
-public class Book {
-       
+public class Book implements Reference {
 
     Map<String, String> fields;
-    
+    private String[] requiredFields;
+    private String[] optionalFields;
+
     public Book() {
-        this.fields=new HashMap<String, String>();
+        this.fields = new HashMap<String, String>();
+        this.requiredFields = new String[]{"author", "title", "year"};
+        this.optionalFields = new String[]{"volume", "series", "address", "edition", "month", "note"};
     }
-    
+
+    public String[] getRequiredFields() {
+        return requiredFields;
+    }
+
+    public String[] getOptionalFields() {
+        return optionalFields;
+    }
+
     public void addField(String key, String value) {
         this.fields.put(key, value);
     }
-    
+
     public String getField(String key) {
         return this.fields.get(key);
     }
-    
+
     public String toBibTex() {
-        String result="@book{";
-        String citationKey=this.getField("author").substring(0,4) + this.getField("year").substring(0,4)
-                + this.getField("title").substring(0,4);
-        result+=citationKey;
-        for(String key : this.fields.keySet()) {
-            result+=",\n";
-            result+=key + " = {" + this.fields.get(key) + "}";
+        String result = "@book{";
+        String citationKey = this.getField("author").substring(0, 4) + this.getField("year").substring(0, 4)
+                + this.getField("title").substring(0, 4);
+        result += citationKey;
+        for (String key : this.fields.keySet()) {
+            result += ",\n";
+            result += key + " = {" + this.fields.get(key) + "}";
         }
-        result+="\n}";
+        result += "\n}";
         return result;
     }
-    
-    
+
 }
