@@ -14,6 +14,7 @@ import java.util.Map;
  */
 public class Book implements Reference {
 
+    private String citationKey;
     Map<String, String> fields;
     private String[] requiredFields;
     private String[] optionalFields;
@@ -41,12 +42,8 @@ public class Book implements Reference {
     }
 
     public String toBibTex() {
-        String result = "@book{";
-        result += getField("citationKey");
+        String result = "@book{" + citationKey;
         for (String key : this.fields.keySet()) {
-            if (key.equals("citationKey")) {
-                continue;
-            }
             result += ",\n";
             result += key + " = {" + this.fields.get(key) + "}";
         }
@@ -56,14 +53,13 @@ public class Book implements Reference {
 
     @Override
     public void setCitationKey(String suffix) {
-        String citationKey = this.getField("author").substring(0, 4) + this.getField("year").substring(0, 4)
+        citationKey = this.getField("author").substring(0, 4) + this.getField("year").substring(0, 4)
                 + this.getField("title").substring(0, 4) + suffix;
-        addField("citationKey", citationKey);
     }
 
     @Override
     public String getCitationKey() {
-        return getField("citationKey");
+        return citationKey;
     }
 
 }
