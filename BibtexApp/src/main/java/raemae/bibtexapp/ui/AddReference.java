@@ -19,15 +19,19 @@ public class AddReference extends TextUIFunction {
 
     @Override
     public void execute() {
-        String cmd = queryReferenceType();
+        io.print("");
+        io.print("Which type of reference do you wish to add?");
+        io.print("1 - book");
+        String cmd = io.readLine("> ");
+        
         if (cmd.trim().equals("1")) {
             Book b = new Book();
             Reference r = createReference(b);
             if (r != null) {
                 references.addBook(r);
-            }            
-
+            }
         }
+        
     }
 
     @Override
@@ -38,13 +42,6 @@ public class AddReference extends TextUIFunction {
     @Override
     public String getMenuDescription() {
         return "Add a reference";
-    }
-
-    private String queryReferenceType() {
-        io.print("");
-        io.print("Which type of reference do you wish to add?");
-        io.print("1 - book");
-        return io.readLine("> ");
     }
 
     private Reference createReference(Reference r) {
