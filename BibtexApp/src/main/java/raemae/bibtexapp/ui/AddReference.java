@@ -52,23 +52,18 @@ public class AddReference extends TextUIFunction {
         String[] requiredFields = r.getRequiredFields();
         String[] optionalFields = r.getOptionalFields();
 
-        io.print("Please enter the following required fields:");
         if(!setRequiredFields(r, requiredFields)) {
             return null;
         }
-        
         setUniqueCitationKey(r);
-        
-        io.print("");
-        io.print("The following fields are optional and can be left empty if they are not included in the reference:");
         setOptionalFields(r, optionalFields);
         
-
         io.print("Reference added.");
         return r;
     }
     
     private boolean setRequiredFields(Reference r, String[] requiredFields) {
+        io.print("Please enter the following required fields:");
         for (int i = 0; i < requiredFields.length; i++) {
             String fieldName = requiredFields[i];
             String field = io.readLine(fieldName + ": ");
@@ -82,6 +77,8 @@ public class AddReference extends TextUIFunction {
     }
     
     private void setOptionalFields(Reference r, String[] optionalFields) {
+        io.print("");
+        io.print("The following fields are optional and can be left empty if they are not included in the reference:");
         for (int i = 0; i < optionalFields.length; i++) {
             String fieldName = optionalFields[i];
             String field = io.readLine(fieldName + ": ");
@@ -95,12 +92,16 @@ public class AddReference extends TextUIFunction {
         r.setCitationKey("");
         String citationKey = r.getCitationKey();
         String suffix = "";
+        Boolean unique = true;
         for (Reference ref : references.getBooks()) {
             if (ref.getCitationKey().equals(citationKey)) {
-                suffix = UUID.randomUUID().toString().substring(0, 4);
+                unique = false;
             }
         }
-        r.setCitationKey(suffix);
+        if (!unique) {
+            suffix = UUID.randomUUID().toString().substring(0, 4);
+            r.setCitationKey(suffix);
+        }        
     }
 
 }
