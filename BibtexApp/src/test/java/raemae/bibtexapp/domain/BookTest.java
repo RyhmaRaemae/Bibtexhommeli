@@ -41,9 +41,9 @@ public class BookTest {
        book.addField("title","Ohjelmistotuotanto");
         
         assertEquals(book.toBibTex(), "@book{"+book.getCitationKey()+",\n"                                
-                                    + "year = {"+book.getField("year")+"},\n"
                                     + "author = {"+book.getField("author")+"},\n"
-                                    + "title = {"+book.getField("title")+"}\n}"); 
+                                    + "title = {"+book.getField("title")+"},\n"
+                                    + "year = {"+book.getField("year")+"}\n"); 
     }
    
    @Test
