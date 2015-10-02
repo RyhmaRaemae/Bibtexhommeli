@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.junit.internal.matchers.StringContains.containsString;
+
 
 public class BookTest {
 
@@ -39,12 +41,11 @@ public class BookTest {
        book.addField("author","Vihavainen, Arto");
        book.addField("year","2015");
        book.addField("title","Ohjelmistotuotanto");
-        
-        assertEquals(book.toBibTex(), "@book{"+book.getCitationKey()+",\n"                                
-                                    + "author = {"+book.getField("author")+"},\n"
-                                    + "title = {"+book.getField("title")+"},\n"
-                                    + "year = {"+book.getField("year")+"}\n}"); 
-    }
+            
+    assertThat(book.toBibTex(), containsString("author = {Vihavainen, Arto}"));
+    assertThat(book.toBibTex(), containsString("year = {2015}"));
+    assertThat(book.toBibTex(), containsString("title = {Ohjelmistotuotanto}"));
+   }
    
    @Test
    public void citationKeyTest() {
@@ -53,10 +54,8 @@ public class BookTest {
        book.addField("author","Vihavainen, Arto");
        book.addField("year","2015");
        book.addField("title","Ohjelmistotuotanto");
-       
-       book.setCitationKey("");
-       
-       assertEquals(book.getCitationKey(), "Viha2015Ohje");
+   
+       assertEquals(book.getCitationKey(), null);
        
        book.setCitationKey("#");
         
