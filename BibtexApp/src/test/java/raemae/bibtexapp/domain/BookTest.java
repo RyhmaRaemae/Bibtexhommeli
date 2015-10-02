@@ -43,7 +43,7 @@ public class BookTest {
         assertEquals(book.toBibTex(), "@book{"+book.getCitationKey()+",\n"                                
                                     + "author = {"+book.getField("author")+"},\n"
                                     + "title = {"+book.getField("title")+"},\n"
-                                    + "year = {"+book.getField("year")+"}\n"); 
+                                    + "year = {"+book.getField("year")+"}\n}"); 
     }
    
    @Test
