@@ -32,4 +32,37 @@ public class BookTest {
         
     }
     
+    @Test
+   public void toBibTexTest() {
+       Book book=new Book();
+       
+       book.addField("author","Vihavainen, Arto");
+       book.addField("year","2015");
+       book.addField("title","Ohjelmistotuotanto");
+        
+        assertEquals(book.toBibTex(), "@book{"+book.getCitationKey()+",\n"                                
+                                    + "year = {"+book.getField("year")+"},\n"
+                                    + "author = {"+book.getField("author")+"},\n"
+                                    + "title = {"+book.getField("title")+"}\n}"); 
+    }
+   
+   @Test
+   public void citationKeyTest() {
+       Book book=new Book();
+       
+       book.addField("author","Vihavainen, Arto");
+       book.addField("year","2015");
+       book.addField("title","Ohjelmistotuotanto");
+       
+       book.setCitationKey("");
+       
+       assertEquals(book.getCitationKey(), "Viha2015Ohje");
+       
+       book.setCitationKey("#");
+        
+       assertEquals(book.getCitationKey(), "Viha2015Ohje#"); 
+    }
+    
+    
+    
 }
