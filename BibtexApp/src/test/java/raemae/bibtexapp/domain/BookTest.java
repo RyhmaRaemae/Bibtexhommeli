@@ -62,6 +62,21 @@ public class BookTest {
        assertEquals(book.getCitationKey(), "Viha2015Ohje#"); 
     }
     
+      @Test
+   public void getRequiredFieldsTest() {
+       Book book=new Book(); 
+       String[] requirements = new String[]{"author", "title", "year"};
+       
+       assertArrayEquals(book.getRequiredFields(), requirements);
+   }
+    
+   @Test
+   public void getOptionalFieldsTest() {
+       Book book=new Book(); 
+       String[] requirements = new String[]{"volume", "series", "address", "edition", "month", "note"};
+       
+       assertArrayEquals(book.getOptionalFields(), requirements);
+   }   
     
     
 }
