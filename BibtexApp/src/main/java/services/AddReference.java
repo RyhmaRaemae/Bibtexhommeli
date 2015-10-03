@@ -32,25 +32,25 @@ public class AddReference extends TextUIFunction {
         io.print("3 - inproceedings");
         String cmd = io.readLine("> ");
         int command = Integer.parseInt(cmd);
-        Reference r=null;
+        Reference r = null;
         if (command >= 1 && command <= 3) {
-            switch(command) {
-                case 1: 
-                    r=new Book();
+            switch (command) {
+                case 1:
+                    r = new Book();
                     break;
                 case 2:
-                    r=new Article();
+                    r = new Article();
                     break;
                 case 3:
-                    r=new InProceedings();
+                    r = new InProceedings();
                     break;
             }
-            
-            
-            
+
             if (r != null) {
                 r = createReference(r);
-                references.addReference(r);
+                if (r != null) {
+                    references.addReference(r);
+                }
             }
         }
 
