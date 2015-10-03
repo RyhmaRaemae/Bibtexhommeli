@@ -2,7 +2,9 @@ package services;
 
 import java.util.HashMap;
 import java.util.UUID;
+import raemae.bibtexapp.domain.Article;
 import raemae.bibtexapp.domain.Book;
+import raemae.bibtexapp.domain.InProceedings;
 import raemae.bibtexapp.domain.Reference;
 import raemae.bibtexapp.ui.IO;
 import raemae.bibtexapp.ui.TextUIFunction;
@@ -24,16 +26,34 @@ public class AddReference extends TextUIFunction {
         io.print("");
         io.print("Which type of reference do you wish to add?");
         io.print("1 - book");
+
+        io.print("2 - article");
+
+        io.print("3 - inproceedings");
         String cmd = io.readLine("> ");
-        
-        if (cmd.trim().equals("1")) {
-            Book b = new Book();
-            Reference r = createReference(b);
+        int command = Integer.parseInt(cmd);
+        Reference r=null;
+        if (command >= 1 && command <= 3) {
+            switch(command) {
+                case 1: 
+                    r=new Book();
+                    break;
+                case 2:
+                    r=new Article();
+                    break;
+                case 3:
+                    r=new InProceedings();
+                    break;
+            }
+            
+            
+            
             if (r != null) {
-                references.addBook(r);
+                r = createReference(r);
+                references.addReference(r);
             }
         }
-        
+
     }
 
     @Override
@@ -51,16 +71,16 @@ public class AddReference extends TextUIFunction {
         String[] requiredFields = r.getRequiredFields();
         String[] optionalFields = r.getOptionalFields();
 
-        if(!setRequiredFields(r, requiredFields)) {
+        if (!setRequiredFields(r, requiredFields)) {
             return null;
         }
         setUniqueCitationKey(r);
         setOptionalFields(r, optionalFields);
-        
+
         io.print("Reference added.");
         return r;
     }
-    
+
     private boolean setRequiredFields(Reference r, String[] requiredFields) {
         io.print("Please enter the following required fields:");
         for (int i = 0; i < requiredFields.length; i++) {
@@ -74,7 +94,7 @@ public class AddReference extends TextUIFunction {
         }
         return true;
     }
-    
+
     private void setOptionalFields(Reference r, String[] optionalFields) {
         io.print("");
         io.print("The following fields are optional and can be left empty if they are not included in the reference:");
@@ -84,7 +104,7 @@ public class AddReference extends TextUIFunction {
             if (!field.isEmpty()) {
                 r.addField(fieldName, field);
             }
-        }        
+        }
     }
 
     private void setUniqueCitationKey(Reference r) {
@@ -92,7 +112,7 @@ public class AddReference extends TextUIFunction {
         String citationKey = r.getCitationKey();
         String suffix = "";
         Boolean unique = true;
-        for (Reference ref : references.getBooks()) {
+        for (Reference ref : references.getReferences()) {
             if (ref.getCitationKey().equals(citationKey)) {
                 unique = false;
             }
@@ -100,7 +120,7 @@ public class AddReference extends TextUIFunction {
         if (!unique) {
             suffix = UUID.randomUUID().toString().substring(0, 4);
             r.setCitationKey(suffix);
-        }        
+        }
     }
 
 }

@@ -20,9 +20,9 @@ public class ListReferences extends TextUIFunction {
     @Override
     public void execute() {
         io.print("");
-        io.print("Found the following book references:\n");
-        for (Reference b : references.getBooks()) {
-            io.print(b.toBibTex());
+        io.print("Found the following references:\n");
+        for (Reference r : references.getReferences()) {
+            io.print(r.toBibTex());
         }
     }
 
