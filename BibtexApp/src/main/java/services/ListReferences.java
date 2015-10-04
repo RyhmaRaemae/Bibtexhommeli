@@ -23,6 +23,7 @@ public class ListReferences extends TextUIFunction {
         io.print("Found the following references:\n");
         for (Reference r : references.getReferences()) {
             io.print(r.toBibTex());
+            io.print("");
         }
     }
 

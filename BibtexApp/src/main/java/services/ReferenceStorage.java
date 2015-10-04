@@ -12,15 +12,7 @@ public class ReferenceStorage {
         this.references = references;
     }
 
-//    public void addBook(Reference b) {
-//        books.add(b);
-//    }
-//
-//    public List<Reference> getBooks() {
-//        return books;
-//    }
-    
-        public void addReference(Reference b) {
+    public void addReference(Reference b) {
         references.add(b);
     }
 

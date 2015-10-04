@@ -17,7 +17,7 @@ public class Main {
         l.add(new AddReference(io, storage));
         l.add(new ListReferences(io, storage));
         TextUI ui = new TextUI(l, io);
-        ui.run();
+        ui.run();        
     }
     
 }
