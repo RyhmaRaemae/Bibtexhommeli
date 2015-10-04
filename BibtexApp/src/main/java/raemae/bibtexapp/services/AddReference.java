@@ -1,6 +1,5 @@
-package services;
+package raemae.bibtexapp.services;
 
-import java.util.HashMap;
 import java.util.UUID;
 import raemae.bibtexapp.domain.Article;
 import raemae.bibtexapp.domain.Book;
@@ -8,7 +7,6 @@ import raemae.bibtexapp.domain.InProceedings;
 import raemae.bibtexapp.domain.Reference;
 import raemae.bibtexapp.ui.IO;
 import raemae.bibtexapp.ui.TextUIFunction;
-import services.ReferenceStorage;
 
 public class AddReference extends TextUIFunction {
 

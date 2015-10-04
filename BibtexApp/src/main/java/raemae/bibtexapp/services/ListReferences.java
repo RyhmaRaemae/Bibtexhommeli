@@ -1,10 +1,8 @@
-package services;
+package raemae.bibtexapp.services;
 
-import raemae.bibtexapp.domain.Book;
 import raemae.bibtexapp.domain.Reference;
 import raemae.bibtexapp.ui.IO;
 import raemae.bibtexapp.ui.TextUIFunction;
-import services.ReferenceStorage;
 
 public class ListReferences extends TextUIFunction {
 
