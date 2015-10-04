@@ -19,10 +19,6 @@ public class TextUI {
         
     }
     
-    public void addFunction(TextUIFunction f) {
-        functions.add(f);
-    }
-    
     public void run() {
         Collections.sort(functions);
         running = true;
