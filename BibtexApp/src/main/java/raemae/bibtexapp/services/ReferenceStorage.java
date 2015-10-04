@@ -26,7 +26,8 @@ public class ReferenceStorage {
 
     public boolean saveToFile(String path) {
         try {
-            File file = new File(path.replaceFirst("^~", System.getProperty("user.home")));
+            File file = new File(path);
+//            File file = new File(path.replaceFirst("^~", System.getProperty("user.home")));
 
             Writer out = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(file), "UTF8"));

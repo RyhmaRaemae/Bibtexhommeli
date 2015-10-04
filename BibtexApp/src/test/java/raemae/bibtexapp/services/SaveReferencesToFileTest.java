@@ -25,9 +25,8 @@ import raemae.bibtexapp.domain.*;
 public class SaveReferencesToFileTest {
 
     private ReferenceStorage references = new ReferenceStorage(new ArrayList<Reference>());
-    private String rawPath = "~/BibTeXTest.bib";
 
-    private String convertedPath = rawPath.replaceFirst("^~", System.getProperty("user.home"));
+    private String convertedPath = "BibTeXTest.bib";
 
     @Before
     public void setUp() {
@@ -47,7 +46,7 @@ public class SaveReferencesToFileTest {
 
     @Test
     public void fileIsCreatedSuccessfully() {
-        references.saveToFile(rawPath);
+        references.saveToFile(convertedPath);
 
         File file = new File(convertedPath);
         assertTrue(file.exists());
@@ -60,7 +59,7 @@ public class SaveReferencesToFileTest {
 
     @Test
     public void fileIsEmptyWhenThereAreNoReferences() throws FileNotFoundException, IOException {
-        references.saveToFile(rawPath);
+        references.saveToFile(convertedPath);
 
         File file = new File(convertedPath);
         assertTrue(readFile(file).isEmpty());
@@ -75,7 +74,7 @@ public class SaveReferencesToFileTest {
         
         references.addReference(book);
         
-        references.saveToFile(rawPath);
+        references.saveToFile(convertedPath);
         
         File file = new File(convertedPath);
         assertTrue(readFile(file).equals(book.toBibTex() + "\n"));
@@ -102,7 +101,7 @@ public class SaveReferencesToFileTest {
         references.addReference(book2);
         references.addReference(book3);
         
-        references.saveToFile(rawPath);
+        references.saveToFile(convertedPath);
         
         File file = new File(convertedPath);
         assertTrue(readFile(file).equals(book1.toBibTex() + "\n" + 
