@@ -61,7 +61,7 @@
                             <exclude>raemae/bibtexapp/Main.class</exclude>
                             <exclude>raemae/bibtexapp/ui/ConsoleIO*.class</exclude>
                             <exclude>raemae/bibtexapp/ui/StubIO*.class</exclude>
-                            <exclude>raemae/bibtexapp/ui/StubUIFunctionIO*.class</exclude>
+                            <exclude>raemae/bibtexapp/ui/StubUIFunction*.class</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>
