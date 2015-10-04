@@ -78,9 +78,9 @@ public class ReferenceStorage {
         }
         System.out.println(line);
         while (line != null) {
-            System.out.println("Luuppi");
+//            System.out.println("Luuppi");
             parts = line.split("\\{");
-            System.out.println(parts[0]);
+//            System.out.println(parts[0]);
             if (parts[0].equals("@book")) {
                 r = new Book();
             }
@@ -95,7 +95,7 @@ public class ReferenceStorage {
             }
 
             String citationKey = parts[1].substring(0, parts[1].indexOf(","));
-            System.out.println(citationKey);
+//            System.out.println(citationKey);
             r.loadCitationKey(citationKey);
             try {
                 line = reader.readLine();
@@ -106,9 +106,9 @@ public class ReferenceStorage {
             while (line.charAt(0) != 125) {
                 parts = line.split("\\s+");
                 String key = parts[0];
-                System.out.println("key: " + key);
+//                System.out.println("key: " + key);
                 String value = line.substring(line.indexOf("{") + 1, line.indexOf("}"));
-                System.out.println("value: " + value);
+//                System.out.println("value: " + value);
                 r.addField(key, value);
                 try {
                     line = reader.readLine();
@@ -116,10 +116,10 @@ public class ReferenceStorage {
                     System.out.println(e.toString());
                     return false;
                 }
-                System.out.println(line);
-                System.out.println((int) line.charAt(0));
+//                System.out.println(line);
+//                System.out.println((int) line.charAt(0));
             }
-            System.out.println("Löytyi: " + line);
+//            System.out.println("Löytyi: " + line);
             addReference(r);
             try {
                 line = reader.readLine();
@@ -129,7 +129,7 @@ public class ReferenceStorage {
             }
 
         }
-        System.out.println("Luettu kaikki!");
+//        System.out.println("Luettu kaikki!");
         try {
             reader.close();
         } catch (Exception e) {
