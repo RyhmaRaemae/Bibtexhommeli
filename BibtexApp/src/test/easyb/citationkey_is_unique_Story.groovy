@@ -9,7 +9,7 @@ description """Citation keys generated when references are created are unique"""
 scenario "book references have a unique citation key", {
     given 'two book references with the same required fields', {
         storage = new ReferenceStorage(new ArrayList<Reference>());
-        io = new StubIO("add", "1", "ArtoVihavainen", "Ohjelmistotuotanto", "2015", "", "", "", "", "", "", "add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "", "", "", "", "", "", "list", "quit")
+        io = new StubIO("add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "", "", "", "", "", "", "add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "", "", "", "", "", "", "list", "quit")
         addRef = new AddReference(io, storage)
         listRef = new ListReferences(io, storage)
         l = new ArrayList<TextUIFunction>()
@@ -23,14 +23,20 @@ scenario "book references have a unique citation key", {
     }
 
     then 'their citation keys are different', {
-        numberOfTimesCitationKeyAppears = 0;
         prints = io.getPrints()
+        a = ""
+        b = ""
         for (String p : prints) {
-            if (p.contains("Arto2015Ohje,")) {
-                numberOfTimesCitationKeyAppears++
+            if (p.contains("Arto2015Ohje")) {
+                if (a.equals("")) {
+                    a = p
+                }
+                else {
+                    b = p
+                }
             }
         }
-        numberOfTimesCitationKeyAppears.shouldBe(1)
+        a.shouldNotEqual(b)    
     }
   
     
@@ -53,14 +59,20 @@ scenario "article references have a unique citation key", {
     }
 
     then 'their citation keys are different', {
-        numberOfTimesCitationKeyAppears = 0;
         prints = io.getPrints()
+        a = ""
+        b = ""
         for (String p : prints) {
-            if (p.contains("Arto2015Ohje,")) {
-                numberOfTimesCitationKeyAppears++
+            if (p.contains("Arto2015Ohje")) {
+                if (a.equals("")) {
+                    a = p
+                }
+                else {
+                    b = p
+                }
             }
         }
-        numberOfTimesCitationKeyAppears.shouldBe(1)
+        a.shouldNotEqual(b)
     }
   
     
@@ -83,14 +95,20 @@ scenario "inproceedings references have a unique citation key", {
     }
 
     then 'their citation keys are different', {
-        numberOfTimesCitationKeyAppears = 0;
         prints = io.getPrints()
+        a = ""
+        b = ""
         for (String p : prints) {
-            if (p.contains("Arto2015Ohje,")) {
-                numberOfTimesCitationKeyAppears++
+            if (p.contains("Arto2015Ohje")) {
+                if (a.equals("")) {
+                    a = p
+                }
+                else {
+                    b = p
+                }
             }
         }
-        numberOfTimesCitationKeyAppears.shouldBe(1)
+        a.shouldNotEqual(b)
     }
   
     
