@@ -13,7 +13,8 @@ import java.util.Map;
  * @author Markku
  */
 public class InProceedings implements Reference {
-private String citationKey;
+
+    private String citationKey;
     Map<String, String> fields;
     private String[] requiredFields;
     private String[] optionalFields;
@@ -48,6 +49,10 @@ private String citationKey;
         }
         result += "\n}";
         return result;
+    }
+
+    public void loadCitationKey(String key) {
+        this.citationKey = key;
     }
 
     @Override

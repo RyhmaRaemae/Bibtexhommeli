@@ -51,6 +51,10 @@ public class Book implements Reference {
         return result;
     }
 
+    public void loadCitationKey(String key) {
+        this.citationKey = key;
+    }
+
     @Override
     public void setCitationKey(String suffix) {
         citationKey = this.getField("author").substring(0, 4) + this.getField("year").substring(0, 4)
