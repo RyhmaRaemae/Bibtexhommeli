@@ -18,8 +18,11 @@ public class SaveReferencesToFile extends TextUIFunction {
     public void execute() {
         io.print("");
         io.print("Saving references into file ~/BibTeX.bib");
-        references.saveToFile("~/BibTeX.bib");
-        io.print("File has been saved!");
+        if(references.saveToFile("~/BibTeX.bib")) {
+            io.print("The file has been saved successfully!");
+        } else {
+            io.print("An error occured while trying to save the file!");
+        }
         io.print("");
     }
 

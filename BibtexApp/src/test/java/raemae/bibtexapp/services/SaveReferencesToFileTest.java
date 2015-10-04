@@ -52,6 +52,11 @@ public class SaveReferencesToFileTest {
         File file = new File(convertedPath);
         assertTrue(file.exists());
     }
+    
+    @Test
+    public void emptyPathFails() {
+        assertFalse(references.saveToFile(""));
+    }
 
     @Test
     public void fileIsEmptyWhenThereAreNoReferences() throws FileNotFoundException, IOException {
@@ -59,22 +64,10 @@ public class SaveReferencesToFileTest {
 
         File file = new File(convertedPath);
         assertTrue(readFile(file).isEmpty());
-
-        /*
-         Book book = new Book();
-
-         book.addField("author", "Vihavainen, Arto");
-         book.addField("year", "2015");
-         book.addField("title", "Ohjelmistotuotanto");
-         System.out.println(book.toBibTex());
-         assertEquals(book.getField("author"), "Vihavainen, Arto");
-         assertEquals(book.getField("year"), "2015");
-         assertEquals(book.getField("title"), "Ohjelmistotuotanto");
-         */
     }
 
     @Test
-    public void fileWithOneReference() throws FileNotFoundException, IOException {
+    public void fileContainsOneReferenceSavedCorrectly() throws FileNotFoundException, IOException {
         Book book = new Book();
         book.addField("author", "Vihavainen, Arto");
         book.addField("year", "2015");
@@ -85,15 +78,40 @@ public class SaveReferencesToFileTest {
         references.saveToFile(rawPath);
         
         File file = new File(convertedPath);
-        System.out.println(readFile(file));
-        System.out.println("*************");
-        System.out.println(book.toBibTex() + "\n");
         assertTrue(readFile(file).equals(book.toBibTex() + "\n"));
+    }
+    
+    @Test
+    public void fileContainsSeveralReferencesSavedCorrectly() throws FileNotFoundException, IOException {
+        Book book1 = new Book();
+        book1.addField("author", "Vihavainen, Arto");
+        book1.addField("year", "2015");
+        book1.addField("title", "Ohjelmistotuotanto");
+        
+        Book book2 = new Book();
+        book2.addField("author", "Vihavainen, Arto");
+        book2.addField("year", "2014");
+        book2.addField("title", "Web-palvelinohjelmointi");
+        
+        Book book3 = new Book();
+        book3.addField("author", "Vihavainen, Arto");
+        book3.addField("year", "2013");
+        book3.addField("title", "Selainohjelmointi");
+        
+        references.addReference(book1);
+        references.addReference(book2);
+        references.addReference(book3);
+        
+        references.saveToFile(rawPath);
+        
+        File file = new File(convertedPath);
+        assertTrue(readFile(file).equals(book1.toBibTex() + "\n" + 
+                                         book2.toBibTex() + "\n" +
+                                         book3.toBibTex() + "\n"));
     }
 
     private String readFile(File file) throws FileNotFoundException, IOException {
-        BufferedReader reader
-                = new BufferedReader(new FileReader(file));
+        BufferedReader reader = new BufferedReader(new FileReader(file));
 
         String line = null;
         StringBuilder sb = new StringBuilder();
