@@ -25,8 +25,6 @@ scenario "one reference is saved successfully", {
     }
 
     then 'the file should have one reference', {
-        System.out.println(io.getPrints())
-
         file = new File("BibTeX.bib")
 
         book = new Book()
