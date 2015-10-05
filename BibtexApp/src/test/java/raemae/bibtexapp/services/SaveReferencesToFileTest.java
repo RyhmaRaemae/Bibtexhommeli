@@ -42,6 +42,14 @@ public class SaveReferencesToFileTest {
 
     @After
     public void tearDown() {
+        File file = new File(convertedPath);
+        if (file.exists()) {
+            try {
+                Files.delete(file.toPath());
+            } catch (IOException x) {
+                System.err.println(x);
+            }
+        }
     }
 
     @Test
