@@ -26,7 +26,7 @@ public class ReferenceStorage {
     public void addReference(Reference b) {
         references.add(b);
     }
-
+    
     public List<Reference> getReferences() {
         return references;
     }

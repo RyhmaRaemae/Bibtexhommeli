@@ -1,12 +1,10 @@
 package raemae.bibtexapp;
 
-import raemae.bibtexapp.services.AddReference;
-import raemae.bibtexapp.services.ReferenceStorage;
-import raemae.bibtexapp.services.ListReferences;
-import raemae.bibtexapp.services.SaveReferencesToFile;
+import raemae.bibtexapp.services.*;
 import java.util.ArrayList;
 import java.util.List;
 import raemae.bibtexapp.domain.Reference;
+import raemae.bibtexapp.services.DeleteReference;
 import raemae.bibtexapp.services.LoadReferencesFromFile;
 import raemae.bibtexapp.ui.*;
 
@@ -21,6 +19,7 @@ public class Main {
         l.add(new ListReferences(io, storage));
         l.add(new SaveReferencesToFile(io, storage));
         l.add(new LoadReferencesFromFile(io, storage));
+        l.add(new DeleteReference(io, storage));
         TextUI ui = new TextUI(l, io);
         ui.run();        
     }

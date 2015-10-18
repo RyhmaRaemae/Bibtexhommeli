@@ -29,26 +29,34 @@ public class AddReference extends TextUIFunction {
 
         io.print("3 - inproceedings");
         String cmd = io.readLine("> ");
-        int command = Integer.parseInt(cmd);
+        int command;
+        try {
+            command = Integer.parseInt(cmd);
+        } catch (Exception e) {
+            io.print("Invalid command");
+            return;
+        }
         Reference r = null;
-        if (command >= 1 && command <= 3) {
-            switch (command) {
-                case 1:
-                    r = new Book();
-                    break;
-                case 2:
-                    r = new Article();
-                    break;
-                case 3:
-                    r = new InProceedings();
-                    break;
-            }
 
+        switch (command) {
+            case 1:
+                r = new Book();
+                break;
+            case 2:
+                r = new Article();
+                break;
+            case 3:
+                r = new InProceedings();
+                break;
+            default:
+                io.print("Invalid command");
+                return;
+        }
+
+        if (r != null) {
+            r = createReference(r);
             if (r != null) {
-                r = createReference(r);
-                if (r != null) {
-                    references.addReference(r);
-                }
+                references.addReference(r);
             }
         }
 

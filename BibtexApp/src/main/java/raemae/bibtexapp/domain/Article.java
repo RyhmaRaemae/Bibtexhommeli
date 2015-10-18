@@ -66,4 +66,9 @@ public class Article implements Reference {
         return citationKey;
     }
 
+    @Override
+    public String getType() {
+        return "article";
+    }
+
 }

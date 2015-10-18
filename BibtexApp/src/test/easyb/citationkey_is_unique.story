@@ -9,7 +9,7 @@ description """Citation keys generated when references are created are unique"""
 scenario "book references have a unique citation key", {
     given 'two book references with the same required fields', {
         storage = new ReferenceStorage(new ArrayList<Reference>());
-        io = new StubIO("add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "", "", "", "", "", "", "add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "", "", "", "", "", "", "list", "quit")
+        io = new StubIO("add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "", "", "", "", "", "", "add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "", "", "", "", "", "", "list", "1", "quit")
         addRef = new AddReference(io, storage)
         listRef = new ListReferences(io, storage)
         l = new ArrayList<TextUIFunction>()
@@ -45,7 +45,7 @@ scenario "book references have a unique citation key", {
 scenario "article references have a unique citation key", {
     given 'two article references with the same required fields', {
         storage = new ReferenceStorage(new ArrayList<Reference>());
-        io = new StubIO("add", "2", "ArtoVihavainen", "Ohjelmistotuotanto", "Ohtu", "2015", "", "", "", "", "", "", "add", "2", "Arto Vihavainen", "Ohjelmistotuotanto", "Ohtu", "2015", "", "", "", "", "", "", "list", "quit")
+        io = new StubIO("add", "2", "ArtoVihavainen", "Ohjelmistotuotanto", "Ohtu", "2015", "", "", "", "", "", "", "add", "2", "Arto Vihavainen", "Ohjelmistotuotanto", "Ohtu", "2015", "", "", "", "", "", "", "list", "1", "quit")
         addRef = new AddReference(io, storage)
         listRef = new ListReferences(io, storage)
         l = new ArrayList<TextUIFunction>()
@@ -81,7 +81,7 @@ scenario "article references have a unique citation key", {
 scenario "inproceedings references have a unique citation key", {
     given 'two inproceedings references with the same required fields', {
         storage = new ReferenceStorage(new ArrayList<Reference>());
-        io = new StubIO("add", "3", "ArtoVihavainen", "Ohjelmistotuotanto", "Ohtu", "2015", "", "", "", "", "", "", "", "", "add", "3", "Arto Vihavainen", "Ohjelmistotuotanto", "Ohtu", "2015", "", "", "", "", "", "", "", "", "list", "quit")
+        io = new StubIO("add", "3", "ArtoVihavainen", "Ohjelmistotuotanto", "Ohtu", "2015", "", "", "", "", "", "", "", "", "add", "3", "Arto Vihavainen", "Ohjelmistotuotanto", "Ohtu", "2015", "", "", "", "", "", "", "", "", "list", "1", "quit")
         addRef = new AddReference(io, storage)
         listRef = new ListReferences(io, storage)
         l = new ArrayList<TextUIFunction>()

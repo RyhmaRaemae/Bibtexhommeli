@@ -65,5 +65,9 @@ public class Book implements Reference {
     public String getCitationKey() {
         return citationKey;
     }
+    
+    public String getType() {
+        return "book";
+    }
 
 }

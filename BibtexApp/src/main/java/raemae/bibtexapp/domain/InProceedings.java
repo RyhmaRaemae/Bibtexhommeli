@@ -65,5 +65,9 @@ public class InProceedings implements Reference {
     public String getCitationKey() {
         return citationKey;
     }
+    
+    public String getType() {
+        return "inproceedings";
+    }
 
 }
