@@ -28,6 +28,7 @@ public class DeleteReference extends TextUIFunction {
         io.print("6 - Delete all references where a specific field contains a specific value");
         io.print("");
         String cmd = io.readLine("> ");
+        
         int command;
         try {
             command = Integer.parseInt(cmd);
@@ -35,50 +36,78 @@ public class DeleteReference extends TextUIFunction {
             io.print("Invalid command");
             return;
         }
-        ReferenceFilter rf = new ReferenceFilter();
+        
         switch (command) {
             case 1:
-                references.getReferences().clear();
+                deleteAll();
                 break;
             case 2:
-                listAll();
-                cmd = io.readLine("Enter the number of the reference to delete: ");
-                int index;
-                try {
-                    index = Integer.parseInt(cmd) - 1;
-                } catch (Exception e) {
-                    io.print("Invalid command");
-                    return;
-                }
-                references.getReferences().remove(index);
+                listAllDeleteOne();
                 break;
             case 3:
-                cmd = io.readLine("Citation key: ");
-                Reference r = rf.findByCitationKey(cmd, references);
-                if (r != null) {
-                    references.getReferences().remove(r);
-                }
+                deleteByCitationKey();
                 break;
             case 4:
-                cmd = io.readLine("Type: ");
-                List<Reference> matches = rf.findByType(cmd, references);
-                references.getReferences().removeAll(matches);
+                deleteByType();
                 break;
             case 5:
-                cmd = io.readLine("Value: ");
-                matches = rf.findByAnyFieldContains(cmd, references);
-                references.getReferences().removeAll(matches);
+                deleteByValue();
                 break;
             case 6:
-                String field = io.readLine("Field: ");
-                String value = io.readLine("Value: ");
-                matches = rf.findbyFieldContains(field, value, references);
-                references.getReferences().removeAll(matches);
+                deleteByFieldAndValue();
                 break;
             default:
                 break;
         }
 
+    }
+    
+    private void deleteAll() {
+        references.getReferences().clear();
+    }
+
+    private void deleteByFieldAndValue() {
+        ReferenceFilter rf = new ReferenceFilter();
+        String field = io.readLine("Field: ");
+        String value = io.readLine("Value: ");
+        List<Reference> matches = rf.findbyFieldContains(field, value, references);
+        references.getReferences().removeAll(matches);
+    }
+
+    private void deleteByValue() {
+        ReferenceFilter rf = new ReferenceFilter();
+        String value = io.readLine("Value: ");
+        List<Reference> matches = rf.findByAnyFieldContains(value, references);
+        references.getReferences().removeAll(matches);
+    }
+
+    private void deleteByType() {
+        ReferenceFilter rf = new ReferenceFilter();
+        String type = io.readLine("Type: ");
+        List<Reference> matches = rf.findByType(type, references);
+        references.getReferences().removeAll(matches);
+    }
+
+    private void deleteByCitationKey() {
+        ReferenceFilter rf = new ReferenceFilter();
+        String citationKey = io.readLine("Citation key: ");
+        Reference r = rf.findByCitationKey(citationKey, references);
+        if (r != null) {
+            references.getReferences().remove(r);
+        }
+    }
+
+    private void listAllDeleteOne() {
+        listAll();
+        String cmd = io.readLine("Enter the number of the reference to delete: ");
+        int index;
+        try {
+            index = Integer.parseInt(cmd) - 1;
+        } catch (Exception e) {
+            io.print("Invalid command");
+            return;
+        }
+        references.getReferences().remove(index);
     }
 
     private void listAll() {
