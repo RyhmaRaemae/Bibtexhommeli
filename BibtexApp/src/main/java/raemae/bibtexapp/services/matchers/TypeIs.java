@@ -10,7 +10,7 @@ public class TypeIs implements Matcher {
     private String type;
     
     public TypeIs(String type) {
-        this.type = type;
+        this.type = type.trim().toLowerCase();
     }
 
     @Override

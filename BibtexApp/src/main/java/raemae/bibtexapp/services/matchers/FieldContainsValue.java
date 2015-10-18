@@ -12,8 +12,8 @@ public class FieldContainsValue implements Matcher {
     private String value;
     
     public FieldContainsValue(String field, String value) {
-        this.field = field;
-        this.value = value;
+        this.field = field.trim().toLowerCase();
+        this.value = value.trim();
     }
 
     public boolean matches(Reference r) {
