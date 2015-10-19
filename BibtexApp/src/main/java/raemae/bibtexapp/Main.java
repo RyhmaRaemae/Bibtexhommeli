@@ -20,6 +20,7 @@ public class Main {
         l.add(new SaveReferencesToFile(io, storage));
         l.add(new LoadReferencesFromFile(io, storage));
         l.add(new DeleteReference(io, storage));
+        l.add(new EditReference(io, storage));
         TextUI ui = new TextUI(l, io);
         ui.run();        
     }

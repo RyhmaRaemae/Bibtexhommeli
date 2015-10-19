@@ -74,59 +74,23 @@ public class AddReference extends TextUIFunction {
 
     private Reference createReference(Reference r) {
 
-        String[] requiredFields = r.getRequiredFields();
-        String[] optionalFields = r.getOptionalFields();
 
-        if (!setRequiredFields(r, requiredFields)) {
+        ReferenceEditor referenceEditor = new ReferenceEditor(io);
+        
+        io.print("Please enter the following required fields:");
+        if (!referenceEditor.setRequiredFields(r)) {            
+             io.print("This field must be at least 4 characters long.");
             return null;
         }
-        setUniqueCitationKey(r);
-        setOptionalFields(r, optionalFields);
+        referenceEditor.setUniqueCitationKey(r, references);
+        
+        io.print("");
+        io.print("The following fields are optional and can be left empty if they are not included in the reference:");
+        referenceEditor.setOptionalFields(r);
 
         io.print("Reference added.");
         return r;
     }
-
-    private boolean setRequiredFields(Reference r, String[] requiredFields) {
-        io.print("Please enter the following required fields:");
-        for (int i = 0; i < requiredFields.length; i++) {
-            String fieldName = requiredFields[i];
-            String field = io.readLine(fieldName + ": ");
-            if (field.length() < 4) {
-                io.print("This field must be at least 4 characters long.");
-                return false;
-            }
-            r.addField(fieldName, field);
-        }
-        return true;
-    }
-
-    private void setOptionalFields(Reference r, String[] optionalFields) {
-        io.print("");
-        io.print("The following fields are optional and can be left empty if they are not included in the reference:");
-        for (int i = 0; i < optionalFields.length; i++) {
-            String fieldName = optionalFields[i];
-            String field = io.readLine(fieldName + ": ");
-            if (!field.isEmpty()) {
-                r.addField(fieldName, field);
-            }
-        }
-    }
-
-    private void setUniqueCitationKey(Reference r) {
-        r.setCitationKey("");
-        String citationKey = r.getCitationKey();
-        String suffix = "";
-        Boolean unique = true;
-        for (Reference ref : references.getReferences()) {
-            if (ref.getCitationKey().equals(citationKey)) {
-                unique = false;
-            }
-        }
-        if (!unique) {
-            suffix = UUID.randomUUID().toString().substring(0, 4);
-            r.setCitationKey(suffix);
-        }
-    }
+    
 
 }
