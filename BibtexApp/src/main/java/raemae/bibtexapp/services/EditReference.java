@@ -22,8 +22,7 @@ public class EditReference extends TextUIFunction {
         io.print("");
         io.print("Please enter the citation key of the reference you wish to edit");
         String citationKey = io.readLine("> ");
-        ReferenceFilter rf = new ReferenceFilter();
-        Reference r = rf.findByCitationKey(citationKey, references);
+        Reference r = getReferenceByCitationKey(citationKey);
         
         if (r == null) {
             io.print("No reference matching citation key '" + citationKey + "' found.");
@@ -32,11 +31,23 @@ public class EditReference extends TextUIFunction {
         
         io.print("Please enter the new values for each field. If you do not wish to change the existing value, leave the input empty.");
         io.print("");
+        editReference(r);
+        io.print("Reference edited.");
+        
+    }
+    
+    private Reference getReferenceByCitationKey(String citationKey) {
+        ReferenceFilter rf = new ReferenceFilter();
+        Reference r = rf.findByCitationKey(citationKey, references);
+        
+        return r;
+        
+    }
+    
+    private void editReference(Reference r) {
         ReferenceEditor re = new ReferenceEditor(io);
         re.setRequiredFields(r);
         re.setOptionalFields(r);
-        io.print("Reference edited.");
-        
     }
 
     @Override
