@@ -21,7 +21,7 @@ public class ReferenceEditor {
             String fieldName = requiredFields[i];
             String field = io.readLine(fieldName + ": ");
             if (field.length() < 4) {
-                if (r.getField(fieldName).length() >= 4) {
+                if (r.getField(fieldName) != null) {
                     continue;
                 }
                 return false;

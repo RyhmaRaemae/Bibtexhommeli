@@ -84,7 +84,7 @@ scenario "A specific type of reference can be deleted", {
     
 }
 
-scenario "All references containing a specific value in a field can be deleted", {
+scenario "All references containing a specific value in any field can be deleted", {
     given 'multiple references of different types', {
         storage = new ReferenceStorage(new ArrayList<Reference>());
         io = new StubIO("add", "1", "Keke Kirjoittaja", "Kirja A", "2013", "", "", "", "", "", "", "add", "1", "Spede Vasanen", "Kirja B", "2015", "", "", "", "", "", "", "add", "2", "Ababe", "Artkkeli A", "Artikla", "2014", "", "", "", "", "", "", "add", "2", "Bcdce", "Artikkeli B", "Kartikla", "2014", "", "", "", "", "", "", "add", "3", "InProceedingstekija", "Inproceedings A", "InprA", "2013", "", "", "", "", "", "", "", "", "add", "3", "Inproceedingstekijatar", "Inproceedings B", "InprB", "2013", "", "", "", "", "", "", "", "", "delete", "5", "2013", "list", "1", "quit")
@@ -107,6 +107,61 @@ scenario "All references containing a specific value in a field can be deleted",
             r.getField("year").shouldNotEqual("2013")
         }
         storage.getReferences().size().shouldBe(3)
+    }    
+    
+}
+
+scenario "All references containing a specific value in a specific field can be deleted", {
+    given 'multiple references of different types', {
+        storage = new ReferenceStorage(new ArrayList<Reference>());
+        io = new StubIO("add", "1", "2014", "Kirja A", "2013", "", "", "", "", "", "", "add", "1", "Spede Vasanen", "Kirja B", "2015", "", "", "", "", "", "", "add", "2", "Ababe", "Artkkeli A", "Artikla", "2014", "", "", "", "", "", "", "add", "2", "Bcdce", "Artikkeli B", "Kartikla", "2012", "", "", "", "", "", "", "add", "3", "InProceedingstekija", "Inproceedings A", "InprA", "2013", "", "", "", "", "", "", "", "", "add", "3", "Inproceedingstekijatar", "Inproceedings B", "InprB", "2014", "", "", "", "", "", "", "", "", "delete", "6", "year", "2014", "list", "1", "quit")
+        addRef = new AddReference(io, storage)
+        listRef = new ListReferences(io, storage)
+        deleteRef = new DeleteReference(io, storage)
+        l = new ArrayList<TextUIFunction>()
+        l.add(addRef)
+        l.add(listRef)
+        l.add(deleteRef)
+        ui = new TextUI(l, io)      
+    }
+
+    when 'the option to delete all references containing a specific value is chosen', {
+        ui.run()
+    }
+
+    then 'the references of that type are deleted but all others remain', {
+        for (Reference r : storage.getReferences()) {
+            r.getField("year").shouldNotEqual("2014")
+        }
+        storage.getReferences().get(0).getField("author").shouldBe("2014")
+        storage.getReferences().size().shouldBe(4)
+    }    
+    
+}
+
+scenario "References can be deleted by citation key", {
+    given 'multiple references of different types', {
+        storage = new ReferenceStorage(new ArrayList<Reference>());
+        io = new StubIO("add", "1", "Kirjoittelija", "Kirja A", "2013", "", "", "", "", "", "", "add", "1", "Spede Vasanen", "Kirja B", "2015", "", "", "", "", "", "", "add", "2", "Ababe", "Artkkeli A", "Artikla", "2014", "", "", "", "", "", "", "add", "2", "Bcdce", "Artikkeli B", "Kartikla", "2012", "", "", "", "", "", "", "add", "3", "InProceedingstekija", "Inproceedings A", "InprA", "2013", "", "", "", "", "", "", "", "", "add", "3", "Inproceedingstekijatar", "Inproceedings B", "InprB", "2014", "", "", "", "", "", "", "", "", "delete", "3", "Kirj2013Kirj", "list", "1", "quit")
+        addRef = new AddReference(io, storage)
+        listRef = new ListReferences(io, storage)
+        deleteRef = new DeleteReference(io, storage)
+        l = new ArrayList<TextUIFunction>()
+        l.add(addRef)
+        l.add(listRef)
+        l.add(deleteRef)
+        ui = new TextUI(l, io)        
+    }
+
+    when 'the option to delete a reference by citation key is chosen', {
+        ui.run()
+    }
+
+    then 'the reference containing the specific citation key should be deleted but all the others remain', {
+        for (Reference r : storage.getReferences()) {
+            r.getCitationKey().shouldNotEqual("Kirj2013Kirj")
+        }
+        storage.getReferences().size().shouldBe(5)
     }    
     
 }
