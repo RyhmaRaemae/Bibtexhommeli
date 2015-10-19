@@ -35,6 +35,7 @@ public class EditReference extends TextUIFunction {
         ReferenceEditor re = new ReferenceEditor(io);
         re.setRequiredFields(r);
         re.setOptionalFields(r);
+        io.print("Reference edited.");
         
     }
 

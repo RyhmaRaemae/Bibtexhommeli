@@ -1,8 +1,6 @@
 
 package raemae.bibtexapp.services.matchers;
 
-import java.util.List;
-import java.util.Map;
 import raemae.bibtexapp.domain.Reference;
 
 
