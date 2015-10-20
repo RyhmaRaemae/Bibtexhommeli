@@ -65,6 +65,23 @@ public class InProceedingsTest {
 
         assertEquals(inproceedings.getCitationKey(), "viha2015ohje#");
     }
+    
+    @Test
+    public void citationKeyLoadTest() {
+    InProceedings inproceedings = new InProceedings();
+    inproceedings.addField("author", "Vihavainen, Arto");
+    inproceedings.addField("year", "2015");
+    inproceedings.addField("title", "Ohjelmistotuotanto");
+    inproceedings.addField("journal", "Journal");
+    
+    assertEquals(inproceedings.getCitationKey(), null);
+
+    inproceedings.setCitationKey("#");
+    inproceedings.loadCitationKey(inproceedings.getCitationKey());
+
+    assertEquals(inproceedings.getCitationKey(), "viha2015ohje#");
+    
+    }
 
     @Test
     public void getRequiredFieldsTest() {
