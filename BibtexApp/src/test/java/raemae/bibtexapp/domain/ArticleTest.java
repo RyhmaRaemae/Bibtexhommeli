@@ -49,7 +49,24 @@ public class ArticleTest {
         assertThat(article.toBibTex(), containsString("title = {Ohjelmistotuotanto}"));
         assertThat(article.toBibTex(), containsString("journal = {Journal}"));
     }
+    
+    @Test
+    public void citationKeyLoadTest() {
+    Article article = new Article();
+    article.addField("author", "Vihavainen, Arto");
+    article.addField("year", "2015");
+    article.addField("title", "Ohjelmistotuotanto");
+    article.addField("journal", "Journal");
+    
+    assertEquals(article.getCitationKey(), null);
 
+    article.setCitationKey("#");
+    article.loadCitationKey(article.getCitationKey());
+
+    assertEquals(article.getCitationKey(), "viha2015ohje#");
+    
+    }
+    
     @Test
     public void citationKeyTest() {
         Article article = new Article();
@@ -65,7 +82,7 @@ public class ArticleTest {
 
         assertEquals(article.getCitationKey(), "viha2015ohje#");
     }
-
+    
     @Test
     public void getRequiredFieldsTest() {
         Article article = new Article();
