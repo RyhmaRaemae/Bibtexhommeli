@@ -27,7 +27,7 @@ scenario "book references have a unique citation key", {
         a = ""
         b = ""
         for (String p : prints) {
-            if (p.contains("Arto2015Ohje")) {
+            if (p.contains("arto2015ohje")) {
                 if (a.equals("")) {
                     a = p
                 }
@@ -63,7 +63,7 @@ scenario "article references have a unique citation key", {
         a = ""
         b = ""
         for (String p : prints) {
-            if (p.contains("Arto2015Ohje")) {
+            if (p.contains("arto2015ohje")) {
                 if (a.equals("")) {
                     a = p
                 }
@@ -99,7 +99,7 @@ scenario "inproceedings references have a unique citation key", {
         a = ""
         b = ""
         for (String p : prints) {
-            if (p.contains("Arto2015Ohje")) {
+            if (p.contains("arto2015ohje")) {
                 if (a.equals("")) {
                     a = p
                 }

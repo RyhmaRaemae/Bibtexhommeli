@@ -31,7 +31,7 @@ scenario "one reference is saved successfully", {
         book.addField("author", "Arto Vihavainen")
         book.addField("year", "2015")
         book.addField("title", "Ohjelmistotuotanto")
-        fileText = file.text.replace("Arto2015Ohje", "null").replace("\n", "")
+        fileText = file.text.replace("arto2015ohje", "null").replace("\n", "")
         bookText = book.toBibTex().replace("\n", "")
 
         fileText.equals(bookText).shouldBe true    

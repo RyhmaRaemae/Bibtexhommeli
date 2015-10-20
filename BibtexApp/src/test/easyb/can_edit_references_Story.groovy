@@ -10,7 +10,7 @@ import java.util.*
     scenario "Changing a reference's data will update its fields accordingly", {
     given 'a reference that is stored within the system', {
         storage = new ReferenceStorage(new ArrayList<Reference>());
-        io = new StubIO("add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "KenttaA", "KenttaB", "KenttaC", "KenttaD", "KenttaE", "KenttaF", "edit", "Arto2015Ohje", "Virto Ahavainen", "Tuotanto-ohjelmisto", "5102", "KenttaG", "KenttaH", "KenttaI", "KenttaJ", "KenttaK", "KenttaL", "list", "1", "quit")
+        io = new StubIO("add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "KenttaA", "KenttaB", "KenttaC", "KenttaD", "KenttaE", "KenttaF", "edit", "arto2015ohje", "Virto Ahavainen", "Tuotanto-ohjelmisto", "5102", "KenttaG", "KenttaH", "KenttaI", "KenttaJ", "KenttaK", "KenttaL", "list", "1", "quit")
         addRef = new AddReference(io, storage)
         listRef = new ListReferences(io, storage)
         editRef = new EditReference(io, storage)
@@ -31,7 +31,7 @@ import java.util.*
         for (String s : shouldContain) {
             prints.shouldHave(s)
         }
-        prints.shouldHave("Arto2015Ohje")
+        prints.shouldHave("arto2015ohje")
     }   
 }
 

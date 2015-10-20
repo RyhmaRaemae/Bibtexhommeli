@@ -142,7 +142,7 @@ scenario "All references containing a specific value in a specific field can be 
 scenario "References can be deleted by citation key", {
     given 'multiple references of different types', {
         storage = new ReferenceStorage(new ArrayList<Reference>());
-        io = new StubIO("add", "1", "Kirjoittelija", "Kirja A", "2013", "", "", "", "", "", "", "add", "1", "Spede Vasanen", "Kirja B", "2015", "", "", "", "", "", "", "add", "2", "Ababe", "Artkkeli A", "Artikla", "2014", "", "", "", "", "", "", "add", "2", "Bcdce", "Artikkeli B", "Kartikla", "2012", "", "", "", "", "", "", "add", "3", "InProceedingstekija", "Inproceedings A", "InprA", "2013", "", "", "", "", "", "", "", "", "add", "3", "Inproceedingstekijatar", "Inproceedings B", "InprB", "2014", "", "", "", "", "", "", "", "", "delete", "3", "Kirj2013Kirj", "list", "1", "quit")
+        io = new StubIO("add", "1", "Kirjoittelija", "Kirja A", "2013", "", "", "", "", "", "", "add", "1", "Spede Vasanen", "Kirja B", "2015", "", "", "", "", "", "", "add", "2", "Ababe", "Artkkeli A", "Artikla", "2014", "", "", "", "", "", "", "add", "2", "Bcdce", "Artikkeli B", "Kartikla", "2012", "", "", "", "", "", "", "add", "3", "InProceedingstekija", "Inproceedings A", "InprA", "2013", "", "", "", "", "", "", "", "", "add", "3", "Inproceedingstekijatar", "Inproceedings B", "InprB", "2014", "", "", "", "", "", "", "", "", "delete", "3", "kirj2013kirj", "list", "1", "quit")
         addRef = new AddReference(io, storage)
         listRef = new ListReferences(io, storage)
         deleteRef = new DeleteReference(io, storage)
@@ -159,7 +159,7 @@ scenario "References can be deleted by citation key", {
 
     then 'the reference containing the specific citation key should be deleted but all the others remain', {
         for (Reference r : storage.getReferences()) {
-            r.getCitationKey().shouldNotEqual("Kirj2013Kirj")
+            r.getCitationKey().shouldNotEqual("kirj2013kirj")
         }
         storage.getReferences().size().shouldBe(5)
     }    
