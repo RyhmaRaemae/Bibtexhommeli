@@ -15,7 +15,6 @@ public class BookTest {
         book.addField("author", "Vihavainen, Arto");
         book.addField("year", "2015");
         book.addField("title", "Ohjelmistotuotanto");
-        System.out.println(book.toBibTex());
         assertEquals(book.getField("author"), "Vihavainen, Arto");
         assertEquals(book.getField("year"), "2015");
         assertEquals(book.getField("title"), "Ohjelmistotuotanto");
