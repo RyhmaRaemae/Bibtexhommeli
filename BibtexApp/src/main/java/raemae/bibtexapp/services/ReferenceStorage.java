@@ -101,8 +101,8 @@ public class ReferenceStorage {
             while (line.charAt(0) != 125) {
                 parts = line.split("\\s+");
                 String key = parts[0];
-                String value = line.substring(line.indexOf("{") + 1, line.indexOf("}"));
-                r.addField(key, value);
+                String value = line.substring(line.indexOf("{") + 1, line.lastIndexOf("}"));
+                r.addField(key, ScandicConverter.bibTexToScand(value));
                 try {
                     line = reader.readLine();
                 } catch (Exception e) {

@@ -7,6 +7,7 @@ package raemae.bibtexapp.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import raemae.bibtexapp.services.ScandicConverter;
 
 /**
  *
@@ -45,7 +46,7 @@ public class Article implements Reference {
         String result = "@article{" + citationKey;
         for (String key : this.fields.keySet()) {
             result += ",\n";
-            result += key + " = {" + this.fields.get(key) + "}";
+            result += key + " = {" + ScandicConverter.scandToBibTex(this.fields.get(key)) + "}";
         }
         result += "\n}";
         return result;
@@ -59,6 +60,7 @@ public class Article implements Reference {
     public void setCitationKey(String suffix) {
         citationKey = this.getField("author").substring(0, 4) + this.getField("year").substring(0, 4)
                 + this.getField("title").substring(0, 4) + suffix;
+                citationKey = ScandicConverter.cleanCitationKey(citationKey);
     }
 
     @Override
