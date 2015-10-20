@@ -63,7 +63,7 @@ public class ArticleTest {
 
         article.setCitationKey("#");
 
-        assertEquals(article.getCitationKey(), "Viha2015Ohje#");
+        assertEquals(article.getCitationKey(), "viha2015ohje#");
     }
 
     @Test

@@ -58,7 +58,7 @@ public class BookTest {
 
         book.setCitationKey("#");
 
-        assertEquals(book.getCitationKey(), "Viha2015Ohje#");
+        assertEquals(book.getCitationKey(), "viha2015ohje#");
     }
 
     @Test

@@ -63,7 +63,7 @@ public class InProceedingsTest {
 
         inproceedings.setCitationKey("#");
 
-        assertEquals(inproceedings.getCitationKey(), "Viha2015Ohje#");
+        assertEquals(inproceedings.getCitationKey(), "viha2015ohje#");
     }
 
     @Test
