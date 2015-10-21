@@ -40,7 +40,7 @@ public class ChangeTextColor extends TextUIFunction {
         
         io.print("The color options for the text are:");
         for (int i = 0; i < colors.length; i++) {
-            io.print(" " + i + ": " + colors[i]);
+            io.print(i + " - " + colors[i]);
         }
         io.print("Type the number of the color you would like to use.");
         io.print("Any other character will allow you to keep the current color.");
