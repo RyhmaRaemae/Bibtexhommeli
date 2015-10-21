@@ -3,6 +3,7 @@ package raemae.bibtexapp.ui;
 
 import java.util.Collections;
 import java.util.List;
+import raemae.bibtexapp.services.ChangeTextColor;
 
 
 public class TextUI {
@@ -20,6 +21,9 @@ public class TextUI {
     }
     
     public void run() {
+        // Initialize text color functionality
+        ChangeTextColor.initiate();
+        
         Collections.sort(functions);
         running = true;
         while (running) {
@@ -36,7 +40,13 @@ public class TextUI {
             }
             
         }
+        
         io.print("");
+        
+        // End text color functionality
+        io.print(ChangeTextColor.reset());
+        io.print("");
+        ChangeTextColor.end();
     }
     
     private void listMenuOptions() {

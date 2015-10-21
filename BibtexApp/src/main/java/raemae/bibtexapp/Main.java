@@ -21,6 +21,7 @@ public class Main {
         l.add(new LoadReferencesFromFile(io, storage));
         l.add(new DeleteReference(io, storage));
         l.add(new EditReference(io, storage));
+        l.add(new ChangeTextColor(io));
         TextUI ui = new TextUI(l, io);
         ui.run();        
     }
