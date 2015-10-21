@@ -52,12 +52,12 @@ public class Article implements Reference {
         return result;
     }
 
-    public void loadCitationKey(String key) {
+    public void setCitationKey(String key) {
         this.citationKey = key;
     }
 
     @Override
-    public void setCitationKey(String suffix) {
+    public void generateCitationKeyWithSuffix(String suffix) {
         citationKey = this.getField("author").substring(0, 4) + this.getField("year").substring(0, 4)
                 + this.getField("title").substring(0, 4) + suffix;
                 citationKey = ScandicConverter.cleanCitationKey(citationKey);

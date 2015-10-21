@@ -12,34 +12,33 @@ public class ReferenceEditor {
         for (int i = 0; i < fields.length; i++) {
             String fieldName = fields[i];
             String field = io.readLine(fieldName + ": ");
-            
+
             if (field.isEmpty()) {
                 if (!required) {
                     continue;
-                }
-                else {
+                } else {
                     return null;
                 }
             }
-            
+
             if (field.length() < minLength) {
                 return null;
             }
-            
+
             values.put(fieldName, field);
         }
         return values;
     }
 
     public static void setFields(Reference r, HashMap<String, String> values) {
-        
+
         for (String s : values.keySet()) {
             r.addField(s, values.get(s));
         }
     }
 
     public static void setUniqueCitationKey(Reference r, ReferenceStorage references) {
-        r.setCitationKey("");
+        r.generateCitationKeyWithSuffix("");
         String citationKey = r.getCitationKey();
         String suffix = "";
         Boolean unique = true;
@@ -50,7 +49,7 @@ public class ReferenceEditor {
         }
         if (!unique) {
             suffix = UUID.randomUUID().toString().substring(0, 4);
-            r.setCitationKey(suffix);
+            r.generateCitationKeyWithSuffix(suffix);
         }
     }
 

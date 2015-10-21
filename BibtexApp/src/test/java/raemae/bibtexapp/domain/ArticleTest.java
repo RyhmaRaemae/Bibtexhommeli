@@ -60,8 +60,8 @@ public class ArticleTest {
     
     assertEquals(article.getCitationKey(), null);
 
-    article.setCitationKey("#");
-    article.loadCitationKey(article.getCitationKey());
+    article.generateCitationKeyWithSuffix("#");
+    article.setCitationKey(article.getCitationKey());
 
     assertEquals(article.getCitationKey(), "viha2015ohje#");
     
@@ -78,7 +78,7 @@ public class ArticleTest {
 
         assertEquals(article.getCitationKey(), null);
 
-        article.setCitationKey("#");
+        article.generateCitationKeyWithSuffix("#");
 
         assertEquals(article.getCitationKey(), "viha2015ohje#");
     }

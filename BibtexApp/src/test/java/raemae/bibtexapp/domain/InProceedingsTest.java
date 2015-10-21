@@ -61,7 +61,7 @@ public class InProceedingsTest {
 
         assertEquals(inproceedings.getCitationKey(), null);
 
-        inproceedings.setCitationKey("#");
+        inproceedings.generateCitationKeyWithSuffix("#");
 
         assertEquals(inproceedings.getCitationKey(), "viha2015ohje#");
     }
@@ -76,8 +76,8 @@ public class InProceedingsTest {
     
     assertEquals(inproceedings.getCitationKey(), null);
 
-    inproceedings.setCitationKey("#");
-    inproceedings.loadCitationKey(inproceedings.getCitationKey());
+    inproceedings.generateCitationKeyWithSuffix("#");
+    inproceedings.setCitationKey(inproceedings.getCitationKey());
 
     assertEquals(inproceedings.getCitationKey(), "viha2015ohje#");
     

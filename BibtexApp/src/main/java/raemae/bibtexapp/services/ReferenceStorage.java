@@ -90,7 +90,7 @@ public class ReferenceStorage {
             }
 
             String citationKey = parts[1].substring(0, parts[1].indexOf(","));
-            r.loadCitationKey(citationKey);
+            r.setCitationKey(citationKey);
 
             line = getNextLine(reader);
             addFieldsToReference(r, parts, line, reader);
