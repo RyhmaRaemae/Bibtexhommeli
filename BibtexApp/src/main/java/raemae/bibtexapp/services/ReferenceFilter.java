@@ -24,10 +24,6 @@ public class ReferenceFilter {
         return matches;
     }
     
-    public List<Reference> findAll(ReferenceStorage references) {
-       return findByMatcher(new All(), references);
-    }
-    
     public List<Reference> findByAnyFieldContains(String value, ReferenceStorage references) {
         return findByMatcher(new AnyFieldContainsValue(value), references);
     }
