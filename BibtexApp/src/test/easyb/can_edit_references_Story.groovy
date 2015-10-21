@@ -39,7 +39,7 @@ import java.util.*
 scenario "Not doing changes will leave the previous values unchanged", {
     given 'a reference that is stored within the system', {
         storage = new ReferenceStorage(new ArrayList<Reference>());
-        io = new StubIO("add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "KenttaA", "KenttaB", "KenttaC", "KenttaD", "KenttaE", "KenttaF", "edit", "Arto2015Ohje", "", "", "", "", "", "", "", "", "", "list", "1", "quit")
+        io = new StubIO("add", "1", "Arto Vihavainen", "Ohjelmistotuotanto", "2015", "KenttaA", "KenttaB", "KenttaC", "KenttaD", "KenttaE", "KenttaF", "edit", "arto2015ohje", "", "", "", "", "", "", "", "", "", "list", "1", "quit")
         addRef = new AddReference(io, storage)
         listRef = new ListReferences(io, storage)
         editRef = new EditReference(io, storage)

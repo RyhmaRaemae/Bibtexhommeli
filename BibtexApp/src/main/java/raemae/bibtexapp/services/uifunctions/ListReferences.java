@@ -6,6 +6,9 @@ import raemae.bibtexapp.domain.Reference;
 import raemae.bibtexapp.services.ReferenceFilter;
 import raemae.bibtexapp.services.ReferenceReader;
 import raemae.bibtexapp.services.ReferenceStorage;
+import raemae.bibtexapp.services.matchers.AnyFieldContainsValue;
+import raemae.bibtexapp.services.matchers.FieldContainsValue;
+import raemae.bibtexapp.services.matchers.TypeIs;
 import raemae.bibtexapp.ui.IO;
 
 public class ListReferences extends TextUIFunction {
@@ -89,25 +92,22 @@ public class ListReferences extends TextUIFunction {
     }
 
     private void listByType() {
-        ReferenceFilter rf = new ReferenceFilter();
         String type = io.readLine("Type: ");
-        List<Reference> matches = rf.findByType(type, references);
+        List<Reference> matches = ReferenceFilter.findByMatcher(new TypeIs(type), references);
         listContents(matches);
     }
 
     private void listByFieldAndValue() {
 
-        ReferenceFilter rf = new ReferenceFilter();
         String field = io.readLine("Field: ");
         String value = io.readLine("Value: ");
-        List<Reference> matches = rf.findbyFieldContains(field, value, references);
+        List<Reference> matches = ReferenceFilter.findByMatcher(new FieldContainsValue(field, value), references);
         listContents(matches);
     }
 
     private void listByValue() {
-        ReferenceFilter rf = new ReferenceFilter();
         String value = io.readLine("Value: ");
-        List<Reference> matches = rf.findByAnyFieldContains(value, references);
+        List<Reference> matches = ReferenceFilter.findByMatcher(new AnyFieldContainsValue(value), references);
         listContents(matches);
     }
 
