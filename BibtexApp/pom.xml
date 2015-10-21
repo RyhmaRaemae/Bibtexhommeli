@@ -100,8 +100,8 @@
                             <exclude>raemae/bibtexapp/ui/ConsoleIO*.class</exclude>
                             <exclude>raemae/bibtexapp/ui/StubIO*.class</exclude>
                             <exclude>raemae/bibtexapp/ui/StubUIFunction*.class</exclude>
-
                             <exclude>raemae/bibtexapp/services/ChangeTextColor*.class</exclude>
+                            <exclude>raemae/bibtexapp/services/uifunctions/Quit*.class</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>

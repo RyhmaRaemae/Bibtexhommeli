@@ -1,6 +1,7 @@
 
 package raemae.bibtexapp.ui;
 
+import raemae.bibtexapp.services.uifunctions.Quit;
 import raemae.bibtexapp.services.uifunctions.TextUIFunction;
 import java.util.Collections;
 import java.util.List;
