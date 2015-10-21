@@ -1,6 +1,7 @@
 
 package raemae.bibtexapp.services;
 
+import java.util.HashMap;
 import raemae.bibtexapp.domain.Reference;
 import raemae.bibtexapp.ui.IO;
 import raemae.bibtexapp.ui.TextUIFunction;
@@ -32,7 +33,6 @@ public class EditReference extends TextUIFunction {
         io.print("Please enter the new values for each field. If you do not wish to change the existing value, leave the input empty.");
         io.print("");
         editReference(r);
-        io.print("Reference edited.");
         
     }
     
@@ -45,9 +45,14 @@ public class EditReference extends TextUIFunction {
     }
     
     private void editReference(Reference r) {
-        ReferenceEditor re = new ReferenceEditor(io);
-        re.setRequiredFields(r);
-        re.setOptionalFields(r);
+        HashMap<String, String> requiredValues = ReferenceEditor.queryFields(r.getRequiredFields(), io, false, 4);
+        if (requiredValues == null) {
+            io.print("Each required field must have a value at least 4 characters long.");
+            return;
+        }
+        ReferenceEditor.setFields(r, requiredValues);
+        HashMap<String, String> optionalValues = ReferenceEditor.queryFields(r.getOptionalFields(), io, false, 0);
+        ReferenceEditor.setFields(r, optionalValues);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package raemae.bibtexapp.services;
 
+import java.util.HashMap;
 import java.util.UUID;
 import raemae.bibtexapp.domain.Article;
 import raemae.bibtexapp.domain.Book;
@@ -75,19 +76,22 @@ public class AddReference extends TextUIFunction {
     private Reference createReference(Reference r) {
 
 
-        ReferenceEditor referenceEditor = new ReferenceEditor(io);
         
         io.print("Please enter the following required fields:");
-        if (!referenceEditor.setRequiredFields(r)) {            
-             io.print("This field must be at least 4 characters long.");
+        HashMap<String, String> requiredValues = ReferenceEditor.queryFields(r.getRequiredFields(), io, true, 4);
+        if (requiredValues == null) {
+            io.print("All required fields must contain a value at least 4 characters long.");
             return null;
-        }
-        referenceEditor.setUniqueCitationKey(r, references);
+        }        
+        
+        ReferenceEditor.setFields(r, requiredValues);
+        ReferenceEditor.setUniqueCitationKey(r, references);
         
         io.print("");
         io.print("The following fields are optional and can be left empty if they are not included in the reference:");
-        referenceEditor.setOptionalFields(r);
-
+        HashMap<String, String> optionalValues = ReferenceEditor.queryFields(r.getOptionalFields(), io, false, 0);
+        ReferenceEditor.setFields(r, optionalValues);
+        
         io.print("Reference added.");
         return r;
     }

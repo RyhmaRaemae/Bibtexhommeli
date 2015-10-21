@@ -1,48 +1,44 @@
-
 package raemae.bibtexapp.services;
 
+import java.util.HashMap;
 import java.util.UUID;
 import raemae.bibtexapp.domain.Reference;
 import raemae.bibtexapp.ui.IO;
 
-
 public class ReferenceEditor {
-    
-    private IO io;
-    
-    public ReferenceEditor(IO io) {
-        this.io = io;
-    }
-    
-    
-    public boolean setRequiredFields(Reference r) {
-        String[] requiredFields = r.getRequiredFields();
-        for (int i = 0; i < requiredFields.length; i++) {
-            String fieldName = requiredFields[i];
+
+    public static HashMap<String, String> queryFields(String[] fields, IO io, boolean required, int minLength) {
+        HashMap<String, String> values = new HashMap<String, String>();
+        for (int i = 0; i < fields.length; i++) {
+            String fieldName = fields[i];
             String field = io.readLine(fieldName + ": ");
-            if (field.length() < 4) {
-                if (r.getField(fieldName) != null) {
+            
+            if (field.isEmpty()) {
+                if (!required) {
                     continue;
                 }
-                return false;
+                else {
+                    return null;
+                }
             }
-            r.addField(fieldName, field);
+            
+            if (field.length() < minLength) {
+                return null;
+            }
+            
+            values.put(fieldName, field);
         }
-        return true;
+        return values;
     }
 
-    public void setOptionalFields(Reference r) {
-        String[] optionalFields = r.getOptionalFields();
-        for (int i = 0; i < optionalFields.length; i++) {
-            String fieldName = optionalFields[i];
-            String field = io.readLine(fieldName + ": ");
-            if (!field.isEmpty()) {
-                r.addField(fieldName, field);
-            }
+    public static void setFields(Reference r, HashMap<String, String> values) {
+        
+        for (String s : values.keySet()) {
+            r.addField(s, values.get(s));
         }
     }
 
-    public void setUniqueCitationKey(Reference r, ReferenceStorage references) {
+    public static void setUniqueCitationKey(Reference r, ReferenceStorage references) {
         r.setCitationKey("");
         String citationKey = r.getCitationKey();
         String suffix = "";

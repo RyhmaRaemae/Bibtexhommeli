@@ -121,7 +121,6 @@ public class ListReferences extends TextUIFunction {
                 io.print(ReferenceReader.toReadable(r));
             }
             
-            io.print("");
         }
     }
 
