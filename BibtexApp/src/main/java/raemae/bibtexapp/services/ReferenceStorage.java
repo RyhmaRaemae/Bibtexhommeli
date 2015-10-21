@@ -56,7 +56,7 @@ public class ReferenceStorage {
     }
 
     public boolean loadFromFile(String path) {
-        references.clear();
+        
         BufferedReader reader = createReader(path);
 
         if (reader == null) {
@@ -67,6 +67,8 @@ public class ReferenceStorage {
         if (line == null) {
             return false;
         }
+        
+        references.clear();
         
         if (readAndAddReferences(reader, line) == false) {
             return false;
