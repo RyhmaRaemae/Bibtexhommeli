@@ -2,7 +2,7 @@ package raemae.bibtexapp.services.uifunctions;
 
 import java.util.List;
 import raemae.bibtexapp.domain.Reference;
-import raemae.bibtexapp.services.ReferenceFilter;
+import raemae.bibtexapp.services.ReferenceFinder;
 import raemae.bibtexapp.services.ReferenceStorage;
 import raemae.bibtexapp.services.matchers.*;
 import raemae.bibtexapp.ui.IO;
@@ -71,25 +71,25 @@ public class DeleteReference extends TextUIFunction {
     private void deleteByFieldAndValue() {
         String field = io.readLine("Field: ");
         String value = io.readLine("Value: ");
-        List<Reference> matches = ReferenceFilter.findByMatcher(new FieldContainsValue(field, value), references);
+        List<Reference> matches = ReferenceFinder.findByMatcher(new FieldContainsValue(field, value), references);
         references.getReferences().removeAll(matches);
     }
 
     private void deleteByValue() {
         String value = io.readLine("Value: ");
-        List<Reference> matches = ReferenceFilter.findByMatcher(new AnyFieldContainsValue(value), references);
+        List<Reference> matches = ReferenceFinder.findByMatcher(new AnyFieldContainsValue(value), references);
         references.getReferences().removeAll(matches);
     }
 
     private void deleteByType() {
         String type = io.readLine("Type: ");
-        List<Reference> matches = ReferenceFilter.findByMatcher(new TypeIs(type), references);
+        List<Reference> matches = ReferenceFinder.findByMatcher(new TypeIs(type), references);
         references.getReferences().removeAll(matches);
     }
 
     private void deleteByCitationKey() {
         String citationKey = io.readLine("Citation key: ");
-        List<Reference> matches = ReferenceFilter.findByMatcher(new CitationKeyIs(citationKey), references);
+        List<Reference> matches = ReferenceFinder.findByMatcher(new CitationKeyIs(citationKey), references);
         if (matches != null) {
             Reference r = matches.get(0);
             references.getReferences().remove(r);

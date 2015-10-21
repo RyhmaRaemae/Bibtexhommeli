@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import raemae.bibtexapp.domain.Reference;
 import raemae.bibtexapp.services.ReferenceEditor;
-import raemae.bibtexapp.services.ReferenceFilter;
+import raemae.bibtexapp.services.ReferenceFinder;
 import raemae.bibtexapp.services.ReferenceStorage;
 import raemae.bibtexapp.services.matchers.CitationKeyIs;
 import raemae.bibtexapp.ui.IO;
@@ -41,7 +41,7 @@ public class EditReference extends TextUIFunction {
     }
     
     private Reference getReferenceByCitationKey(String citationKey) {
-        List<Reference> r = ReferenceFilter.findByMatcher(new CitationKeyIs(citationKey), references);
+        List<Reference> r = ReferenceFinder.findByMatcher(new CitationKeyIs(citationKey), references);
         if (r != null) {
             return r.get(0);
         }

@@ -7,7 +7,7 @@ import raemae.bibtexapp.domain.Reference;
 import raemae.bibtexapp.services.matchers.*;
 
 
-public class ReferenceFilter {
+public class ReferenceFinder {
     
     public static List<Reference> findByMatcher(Matcher m, ReferenceStorage references) {        
         List<Reference> matches = new ArrayList<Reference>();
