@@ -86,6 +86,7 @@ scenario "References can be listed by matching any field to a value", {
         prints.shouldHave("year = {2015}")
         prints.shouldHave("Author: 2015")
         prints.shouldHave("Year: 2015")
+        prints.shouldNotHave("Note: ")
     }
 }
    
