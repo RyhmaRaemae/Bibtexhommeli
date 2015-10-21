@@ -26,7 +26,7 @@ public class ReferenceStorage {
     public void addReference(Reference b) {
         references.add(b);
     }
-    
+
     public List<Reference> getReferences() {
         return references;
     }
@@ -57,76 +57,96 @@ public class ReferenceStorage {
 
     public boolean loadFromFile(String path) {
         references.clear();
-        BufferedReader reader;
-        try {
-            reader = new BufferedReader(new FileReader(new File(path)));
-        } catch (Exception e) {
-            System.out.println(e.toString());
+        BufferedReader reader = createReader(path);
+
+        if (reader == null) {
             return false;
         }
-        Reference r = null;
-        String[] parts;
-        String line = null;
-        StringBuilder sb = new StringBuilder();
-        try {
-            line = reader.readLine();
-        } catch (Exception e) {
-            System.out.println(e.toString());
+
+        String line = getNextLine(reader);
+        if (line == null) {
             return false;
         }
-        System.out.println(line);
+        
+        if (readAndAddReferences(reader, line) == false) {
+            return false;
+        }
+        
+        closeReader(reader);
+
+        return true;
+    }
+    
+    private boolean readAndAddReferences(BufferedReader reader, String line) {
         while (line != null) {
-            parts = line.split("\\{");
-            if (parts[0].equals("@book")) {
-                r = new Book();
-            }
-            if (parts[0].equals("@article")) {
-                r = new Article();
-            }
-            if (parts[0].equals("@inproceedings")) {
-                r = new InProceedings();
-            }
+            String[] parts = line.split("\\{");
+
+            Reference r = getNewReferenceOfType(parts[0]);
+
             if (r == null) {
                 return false;
             }
 
             String citationKey = parts[1].substring(0, parts[1].indexOf(","));
             r.loadCitationKey(citationKey);
-            try {
-                line = reader.readLine();
-            } catch (Exception e) {
-                System.out.println(e.toString());
-                return false;
-            }
-            while (line.charAt(0) != 125) {
-                parts = line.split("\\s+");
-                String key = parts[0];
-                String value = line.substring(line.indexOf("{") + 1, line.lastIndexOf("}"));
-                r.addField(key, ScandicConverter.bibTexToScand(value));
-                try {
-                    line = reader.readLine();
-                } catch (Exception e) {
-                    System.out.println(e.toString());
-                    return false;
-                }
-            }
-            addReference(r);
-            try {
-                line = reader.readLine();
-            } catch (Exception e) {
-                System.out.println(e.toString());
-                return false;
-            }
 
+            line = getNextLine(reader);
+            addFieldsToReference(r, parts, line, reader);
+            addReference(r);
+
+            line = getNextLine(reader);
         }
+        return true;
+    }
+
+    private void closeReader(BufferedReader reader) {
         try {
             reader.close();
         } catch (Exception e) {
             System.out.println(e.toString());
-            return false;
         }
+    }
 
+    private String getNextLine(BufferedReader reader) {
+        try {
+            return reader.readLine();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return null;
+        }
+    }
+
+    private BufferedReader createReader(String path) {
+        try {
+            return new BufferedReader(new FileReader(new File(path)));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return null;
+        }
+    }
+
+    private boolean addFieldsToReference(Reference r, String[] parts, String line, BufferedReader reader) {
+        while (line.charAt(0) != 125) {
+            parts = line.split("\\s+");
+            String key = parts[0];
+            String value = line.substring(line.indexOf("{") + 1, line.lastIndexOf("}"));
+            r.addField(key, ScandicConverter.bibTexToScand(value));
+            line = getNextLine(reader);
+        }
         return true;
+    }
+
+    private Reference getNewReferenceOfType(String s) {
+        if (s.equals("@book")) {
+            return new Book();
+        }
+        if (s.equals("@article")) {
+            return new Article();
+        }
+        if (s.equals("@inproceedings")) {
+            return new InProceedings();
+        }
+        return null;
     }
 
 }
