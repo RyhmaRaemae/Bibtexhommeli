@@ -1,20 +1,14 @@
 package raemae.bibtexapp.services;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.List;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
 import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import static org.junit.internal.matchers.StringContains.containsString;
 import raemae.bibtexapp.domain.*;
 
 public class LoadReferencesFromFileTest {
