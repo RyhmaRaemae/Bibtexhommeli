@@ -1,9 +1,10 @@
 
 package raemae.bibtexapp.ui;
 
+import raemae.bibtexapp.services.uifunctions.TextUIFunction;
 import java.util.Collections;
 import java.util.List;
-import raemae.bibtexapp.services.ChangeTextColor;
+import raemae.bibtexapp.services.uifunctions.ChangeTextColor;
 
 
 public class TextUI {

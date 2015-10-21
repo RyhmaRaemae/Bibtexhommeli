@@ -1,6 +1,8 @@
 
 package raemae.bibtexapp.ui;
 
+import raemae.bibtexapp.services.uifunctions.TextUIFunction;
+
 
 public class Quit extends TextUIFunction {
     

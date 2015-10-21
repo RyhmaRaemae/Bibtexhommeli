@@ -1,10 +1,9 @@
 
-package raemae.bibtexapp.services;
+package raemae.bibtexapp.services.uifunctions;
 
 import static org.fusesource.jansi.Ansi.*;
 import org.fusesource.jansi.AnsiConsole;
 import raemae.bibtexapp.ui.IO;
-import raemae.bibtexapp.ui.TextUIFunction;
 
 public class ChangeTextColor extends TextUIFunction {
     private static final String[] colors = {"BLACK", "RED", "GREEN", "YELLOW",

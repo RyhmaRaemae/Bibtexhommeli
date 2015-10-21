@@ -1,5 +1,5 @@
 
-package raemae.bibtexapp.ui;
+package raemae.bibtexapp.services.uifunctions;
 
 
 public abstract class TextUIFunction implements Comparable<TextUIFunction> {

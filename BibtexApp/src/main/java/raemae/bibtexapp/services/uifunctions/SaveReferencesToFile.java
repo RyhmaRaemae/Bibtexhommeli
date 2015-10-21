@@ -1,7 +1,7 @@
-package raemae.bibtexapp.services;
+package raemae.bibtexapp.services.uifunctions;
 
+import raemae.bibtexapp.services.ReferenceStorage;
 import raemae.bibtexapp.ui.IO;
-import raemae.bibtexapp.ui.TextUIFunction;
 
 public class SaveReferencesToFile extends TextUIFunction {
 

@@ -2,6 +2,7 @@ import raemae.bibtexapp.*
 import raemae.bibtexapp.domain.*
 import raemae.bibtexapp.ui.*
 import raemae.bibtexapp.services.*
+import raemae.bibtexapp.services.uifunctions.*
 import java.util.*
 
 description """Citation keys generated when references are created are unique"""

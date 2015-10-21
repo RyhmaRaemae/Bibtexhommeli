@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package raemae.bibtexapp.services;
+package raemae.bibtexapp.services.uifunctions;
 
 /**
  *
@@ -11,8 +11,8 @@ package raemae.bibtexapp.services;
  */
 
 
+import raemae.bibtexapp.services.ReferenceStorage;
 import raemae.bibtexapp.ui.IO;
-import raemae.bibtexapp.ui.TextUIFunction;
 
 public class LoadReferencesFromFile extends TextUIFunction {
 
