@@ -9,7 +9,7 @@ public class AnyFieldContainsValue implements Matcher {
     private String value;
     
     public AnyFieldContainsValue(String value) {
-        this.value = value;
+        this.value = value.trim();
     }
 
     @Override
