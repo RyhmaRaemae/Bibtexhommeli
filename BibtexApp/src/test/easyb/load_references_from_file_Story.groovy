@@ -10,12 +10,16 @@ description "References are loaded from a file"
 scenario "a BibTex.bib file exists  or is generated", {
     given 'a new book reference is created', {
         storage = new ReferenceStorage(new ArrayList<Reference>());
-        io = new StubIO("add", "1", "aaaa", "aaaa", "aaaa", "", "", "", "", "", "", "save", "add", "1", "bbbb", "bbbb", "bbbb", "", "", "", "", "", "", "load", "list", "1", "quit")
+        io = new StubIO("add", "1", "aaaa", "aaaa", "aaaa", "", "", "", "", "", "", "save", "add", "1", "bbbb", "bbbb", "bbbb", "", "", "", "", "", "", "delete", "1", "load", "list", "5", "1", "quit")
         addRef = new AddReference(io, storage)
         listRef = new ListReferences(io, storage)
+        saveRef = new SaveReferencesToFile(io, storage)
+        loadRef = new LoadReferencesFromFile(io, storage)
         l = new ArrayList<TextUIFunction>()
         l.add(addRef)
         l.add(listRef)
+        l.add(saveRef)
+        l.add(loadRef)
         ui = new TextUI(l, io)
     }
 
@@ -25,7 +29,9 @@ scenario "a BibTex.bib file exists  or is generated", {
 
     then 'the program outputs contents from loaded file, instead of previous entry', {            
         prints = io.getPrints()
-        prints.shouldHave("title = {aaaa}")
-        prints.shouldNotHave("title = {bbbb}")
+        prints.shouldHave("The file has been saved successfully!")
+        prints.shouldHave("References have been loaded succesfully!")
+        prints.shouldHave("Title: aaaa")
+        prints.shouldNotHave("Title : bbbb")
     }
 }
