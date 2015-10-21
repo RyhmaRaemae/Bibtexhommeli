@@ -39,9 +39,7 @@ public class EditReference extends TextUIFunction {
     }
     
     private Reference getReferenceByCitationKey(String citationKey) {
-        ReferenceFilter rf = new ReferenceFilter();
-        Reference r = rf.findByCitationKey(citationKey, references);
-        
+        Reference r = ReferenceFilter.findByCitationKey(citationKey, references);
         return r;
         
     }

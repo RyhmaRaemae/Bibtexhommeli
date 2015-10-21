@@ -68,31 +68,27 @@ public class DeleteReference extends TextUIFunction {
     }
 
     private void deleteByFieldAndValue() {
-        ReferenceFilter rf = new ReferenceFilter();
         String field = io.readLine("Field: ");
         String value = io.readLine("Value: ");
-        List<Reference> matches = rf.findbyFieldContains(field, value, references);
+        List<Reference> matches = ReferenceFilter.findbyFieldContains(field, value, references);
         references.getReferences().removeAll(matches);
     }
 
     private void deleteByValue() {
-        ReferenceFilter rf = new ReferenceFilter();
         String value = io.readLine("Value: ");
-        List<Reference> matches = rf.findByAnyFieldContains(value, references);
+        List<Reference> matches = ReferenceFilter.findByAnyFieldContains(value, references);
         references.getReferences().removeAll(matches);
     }
 
     private void deleteByType() {
-        ReferenceFilter rf = new ReferenceFilter();
         String type = io.readLine("Type: ");
-        List<Reference> matches = rf.findByType(type, references);
+        List<Reference> matches = ReferenceFilter.findByType(type, references);
         references.getReferences().removeAll(matches);
     }
 
     private void deleteByCitationKey() {
-        ReferenceFilter rf = new ReferenceFilter();
         String citationKey = io.readLine("Citation key: ");
-        Reference r = rf.findByCitationKey(citationKey, references);
+        Reference r = ReferenceFilter.findByCitationKey(citationKey, references);
         if (r != null) {
             references.getReferences().remove(r);
         }
